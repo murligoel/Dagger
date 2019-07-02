@@ -1,4 +1,4 @@
-package com.example.dagger;
+package com.example.dagger.car;
 
 import android.util.Log;
 
@@ -7,23 +7,22 @@ import javax.inject.Inject;
 public class Car {
     private static final String TAG = "Car";
 
-    // Field Injection
-    @Inject Engine engine;
+    private Engine engine;
     private Wheel wheel;
 
-    // Constructor Injection
     @Inject
-    public Car( Wheel wheel) {
+    public Car(Engine engine, Wheel wheel) {
+        this.engine = engine;
         this.wheel = wheel;
     }
 
-    // Method Injection
     @Inject
     public void enableRemote(Remote remote){
         remote.setListener(this);
     }
 
     public void drive(){
+        engine.start();
         Log.d(TAG,"driving...");
     }
 }
