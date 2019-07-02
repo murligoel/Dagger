@@ -7,13 +7,20 @@ import javax.inject.Inject;
 public class Car {
     private static final String TAG = "Car";
 
-    private Engine engine;
+    // Field Injection
+    @Inject Engine engine;
     private Wheel wheel;
 
+    // Constructor Injection
     @Inject
-    public Car(Engine engine, Wheel wheel) {
-        this.engine = engine;
+    public Car( Wheel wheel) {
         this.wheel = wheel;
+    }
+
+    // Method Injection
+    @Inject
+    public void enableRemote(Remote remote){
+        remote.setListener(this);
     }
 
     public void drive(){
