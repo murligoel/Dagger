@@ -5,10 +5,19 @@ import com.example.dagger.car.Engine;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 @Module
-public abstract class DieselEngineModule {
+public class DieselEngineModule {
 
-    @Binds
-    abstract Engine bindEngine(DieselEngine engine);
+    private int horsepower;
+
+    public DieselEngineModule(int horsepower) {
+        this.horsepower = horsepower;
+    }
+
+    @Provides
+    Engine provideEngine(){
+        return new DieselEngine(horsepower);
+    };
 }
